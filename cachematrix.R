@@ -1,38 +1,42 @@
-## This file contains two main functions which take a matrix 
-##and then prints out its inverse.
+## This function takes a matrix and then prints out its inverse.
 
 
-## This function takes a matrix as input, initiates the matrix 
-##variable and its inverse and returns a list with input and output variables 
+
+
+## Input of this function is a matrix, then function initiates the matrix variables
+
+## and its inverse variables! Output is a list containing input and output variables 
 
 makeCacheMatrix <- function(x = matrix()) {
-        i <- NULL
+        inv <- NULL
         set <- function(y) {
                 x <<- y
-                i <<- NULL
+                inv <<- NULL
         }
         get <- function() x
-        setInv <- function(inverse) i <<- inverse
-        getInv <- function() i
+        setInv <- function(inverse) inv <<- inverse
+        getInv <- function() inv
         list(set = set, get = get,
              setInv = setInv,
              getInv = getInv)
 }
 
 
-## This function takes a list as input, checks if the inverse is defined; 
-## if "yes", prints the inverse from cache, 
-## if "no" calculates the inverse and then prints it out. 
+## Input of this function is a list. Function checks if the inverse of a matrix(defined in list) is defined; 
+
+## if it "IS" defiened, it prints out the inverse matrix from cache, 
+
+## if it is "NOT" defined, it calculates the inverse and then prints it out. 
 
 cacheSolve <- function(x, ...) {
-        i <- x$getInv()
-        if(!is.null(i)) {
+        inv <- x$getInv()
+        if(!is.null(inv)) {
                 message("getting cached data")
-                return(i)
+                return(inv)
         }
         data <- x$get()
-        i <- solve(data)
-        x$setInv(i)
-        i
+        inv <- solve(data)
+        x$setInv(inv)
+        inv
 
 }
